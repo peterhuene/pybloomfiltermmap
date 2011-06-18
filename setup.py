@@ -1,5 +1,18 @@
-from distutils.core import setup
-from distutils.extension import Extension
+import sys
+import os
+
+try:
+    import Cython
+    # may need to work around setuptools bug by providing a fake Pyrex
+    sys.path.insert(0, os.path.join(os.path.dirname(__file__), "fake_pyrex"))
+except ImportError:
+     pass
+
+try:
+    from setuptools import setup, Extension
+except ImportError:
+    from distutils.core import setup
+    from distutils.extension import Extension
 
 ext_files = ["src/mmapbitarray.c",
              "src/bloomfilter.c",
