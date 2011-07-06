@@ -11,3 +11,6 @@ clean:
 	rm -rf build/
 	rm -rf dist/
 	rm -fv *so
+
+egg:
+	python setup.py bdist_egg
